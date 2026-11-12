@@ -12,7 +12,9 @@ st.write("Esta es una aplicación simple")
 # Agregamos el logo de la USS
 st.image("descarga.jpg", width=150)
 
-st.write("Haz clic")
+# Botón interactivo oficial
+if st.button("Haz clic"):
+    st.write("¡Hiciste clic en el botón!")
 
 # Campo de texto en el área principal
 texto_principal = st.text_input("Escribe algo:", key="principal")
@@ -31,7 +33,9 @@ st.sidebar.write("Esto es una barra lateral")
 # Agregamos el logo en la barra lateral
 st.sidebar.image("descarga.jpg", width=100)
 
-st.sidebar.write("Haz clic pero en la barra lateral")
+# Botón interactivo en la barra lateral
+if st.sidebar.button("Haz clic pero en la barra lateral"):
+    st.sidebar.write("¡Hiciste clic en la barra lateral!")
 
 # Campo de texto en la barra lateral
 texto_lateral = st.sidebar.text_input("Escribe algo en la barra:", key="lateral")
