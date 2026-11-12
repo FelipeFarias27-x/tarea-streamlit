@@ -6,13 +6,16 @@ import matplotlib.pyplot as plt
 st.set_page_config(page_title="Dashboard interactivo de notas", layout="wide")
 
 # Título principal y descripción
-st.title("Dashboard interactivo de notas")
+st.title("Panel interactivo de notas")
 st.write("Explora los resultados de un curso combinando filtros. Promedio: 50% de cada evaluación. Aprobación del ejercicio: promedio mayor o igual a 4.0. Datos ficticios.")
 
 # Cargar los datos desde el archivo CSV subido
 @st.cache_data
 def cargar_datos():
-    return pd.read_csv("estudiantes_notas.csv")
+    df_data = pd.read_csv("estudiantes_notas.csv")
+    # Calcular el promedio institucional (50% nota_1 y 50% nota_2)
+    df_data["promedio"] = (df_data["nota_1"] * 0.5) + (df_data["nota_2"] * 0.5)
+    return df_data
 
 try:
     df = cargar_datos()
