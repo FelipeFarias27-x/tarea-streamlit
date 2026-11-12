@@ -10,28 +10,29 @@ st.title("Panel interactivo de notas")
 st.write("Explora los resultados de un curso combinando filtros. Promedio: 50% de cada evaluación. Aprobación del ejercicio: promedio mayor o igual a 4.0. Datos ficticios.")
 
 # ----------------------------------------------------
-# BARRA LATERAL (SIDEBAR) - CARGA DE ARCHIVO Y FILTROS
+# BARRA LATERAL (SIDEBAR) - CARGA DE ARCHIVO
 # ----------------------------------------------------
 st.sidebar.header("Datos y filtros")
 st.sidebar.subheader("Carga el archivo de estudiantes")
 
-# Widget interactivo para subir el archivo CSV (tal como pide la pauta)
+# Widget interactivo obligatorio para subir el archivo
 archivo_subido = st.sidebar.file_uploader("Sube tu archivo CSV", type=["csv"])
 
-if archivo_subido is not None:
-    df = pd.read_csv(archivo_subido)
-else:
-    # Si no se ha subido uno nuevo, intenta cargar el que está por defecto en el repositorio
-    try:
-        df = pd.read_csv("estudiantes_notas.csv")
-    except FileNotFoundError:
-        st.warning("Por favor, sube el archivo 'estudiantes_notas.csv' usando el botón de la barra lateral o el repositorio.")
-        st.stop()
+# CONDICIÓN ESTRICTA: Si no hay archivo subido, se detiene la ejecución y no se muestra nada más
+if archivo_subido is None:
+    st.info("👈 Por favor, utiliza el botón de la barra lateral para cargar el archivo 'estudiantes_notas.csv' y visualizar el dashboard.")
+    st.stop()
 
-# Calcular el promedio institucional si no viene listo (50% nota_1 y 50% nota_2)
+# Si se subió el archivo, lo leemos
+df = pd.read_csv(archivo_subido)
+
+# Calcular el promedio institucional (50% nota_1 y 50% nota_2)
 if "promedio" not in df.columns and "nota_1" in df.columns and "nota_2" in df.columns:
     df["promedio"] = (df["nota_1"] * 0.5) + (df["nota_2"] * 0.5)
 
+# ----------------------------------------------------
+# FILTROS (Solo aparecen una vez cargado el archivo)
+# ----------------------------------------------------
 st.sidebar.subheader("Sexo")
 sexo_opciones = ["Todos"] + list(df["sexo"].unique()) if "sexo" in df.columns else ["Todos"]
 sexo_seleccionado = st.sidebar.selectbox("Selecciona sexo", sexo_opciones)
