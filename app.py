@@ -8,6 +8,10 @@ st.title("Mi primera aplicación de Streamlit")
 # ----------------------------------------------------
 st.subheader("¡Hola, Streamlit!")
 st.write("Esta es una aplicación simple")
+
+# Agregamos el logo de la USS
+st.image("logo_uss.png", width=150)
+
 st.write("Haz clic")
 
 # Campo de texto en el área principal
@@ -23,6 +27,10 @@ if texto_principal:
 st.sidebar.title("Mi primera barra lateral de Streamlit")
 st.sidebar.write("¡Hola, Barra Lateral!")
 st.sidebar.write("Esto es una barra lateral")
+
+# Agregamos el logo en la barra lateral
+st.sidebar.image("logo_uss.png", width=100)
+
 st.sidebar.write("Haz clic pero en la barra lateral")
 
 # Campo de texto en la barra lateral
