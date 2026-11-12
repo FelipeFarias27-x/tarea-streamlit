@@ -10,7 +10,7 @@ st.subheader("¡Hola, Streamlit!")
 st.write("Esta es una aplicación simple")
 
 # Agregamos el logo de la USS
-st.image("logo_uss.png", width=150)
+st.image("descarga.jpg", width=150)
 
 st.write("Haz clic")
 
@@ -29,7 +29,7 @@ st.sidebar.write("¡Hola, Barra Lateral!")
 st.sidebar.write("Esto es una barra lateral")
 
 # Agregamos el logo en la barra lateral
-st.sidebar.image("logo_uss.png", width=100)
+st.sidebar.image("descarga.jpg", width=100)
 
 st.sidebar.write("Haz clic pero en la barra lateral")
 
